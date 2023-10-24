@@ -1,4 +1,5 @@
 .homePage{
-    background-color: #EAEEEF;
-    height: 100vh;
+    background-color: #3c3c3c;
+    display: grid;
+    background-size: contain;
 }
