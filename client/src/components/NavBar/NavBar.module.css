@@ -56,6 +56,22 @@
 }
 .searchButton:hover {
     background-color: #2f2f2f;
+    color: #EAEEEF;
+}
 
+.showAllButton {
+    height: 50px;
+    width: 180px;
+    color: #2f2f2f;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5em;
+    background-color: #ff7e00;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    transition: background-color 0.35s, color 0.35s;
+}
+
+.showAllButton:hover {
+    background-color: #a75300;
     color: #EAEEEF;
 }
