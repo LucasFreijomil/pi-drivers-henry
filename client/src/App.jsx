@@ -10,12 +10,11 @@ function App() {
   return (
     <div className="App">
       {pathname !== "/" && <NavBar />}
-      {pathname !== "/" && <Footer />}
-
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/home" element={<HomePage />} />
       </Routes>
+      {pathname !== "/" && <Footer />}
     </div>
   );
 }
