@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 const LandingButton = () => {
     return(
         <Link className={Styles.button} to={"/home"}>
-            <p>Go Home</p>
+            <p>Get Started</p>
             </Link>
     )
 }
