@@ -19,7 +19,7 @@ const NavBar = ({ onSearch }) => {
         <button className={Styles.navButton}>Home</button>
       </Link>
 
-      <Link to={"/Form"}>
+      <Link to={"/create"}>
         <button className={Styles.navButton}>Form</button>
       </Link>
 

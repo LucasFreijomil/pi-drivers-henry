@@ -3,6 +3,7 @@ import LandingPage from "./views/Landing/LandingPage";
 import NavBar from "./components/NavBar/Navbar";
 import CardList from "./components/CardList/CardList";
 import Detail from "./views/Detail/Detail";
+import Form from "./views/Form/Form";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/home" element={<CardList drivers={drivers} />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/create" element={<Form />} />
       </Routes>
     </div>
   );
