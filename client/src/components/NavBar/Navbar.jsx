@@ -29,17 +29,8 @@ const NavBar = ({ onSearch }) => {
           placeholder="Search by name..."
           className={Styles.searchInput}
           onChange={handleChange}
-          value={id}
-        ></input>
-        <button
-          onClick={() => {
-            onSearch(id);
-            setId("");
-          }}
-          className={Styles.searchButton}
-        >
-          Search
-        </button>
+          value={id} ></input>
+        <button onClick={() => {onSearch(id); setId("");}} className={Styles.searchButton}> Search</button>
       </div>
 
       <button className={Styles.showAllButton}>Show All</button>

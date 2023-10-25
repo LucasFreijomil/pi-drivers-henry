@@ -14,9 +14,7 @@ function App() {
 
   const onSearch = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:5000/drivers/${id}`);
-
-      const { data } = response;
+      const { data } = await axios.get(`http://localhost:5000/drivers/${id}`);
 
       if (data.name) {
         setDrivers((oldDrivers) => [...oldDrivers, data]);
@@ -36,9 +34,9 @@ function App() {
         <Route exact path="/home" element={<CardList drivers={drivers} />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
-      {pathname !== "/" && <Footer />}
     </div>
   );
+  // {pathname !== "/" && <Footer />}
 }
 
 export default App;

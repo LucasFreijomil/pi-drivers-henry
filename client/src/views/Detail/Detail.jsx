@@ -7,32 +7,28 @@ import Styles from "./Detail.module.css";
 const Detail = () => {
   const { id } = useParams();
 
-  const [drivers, setDrivers] = useState({});
+  const [driver, setDriver] = useState({});
 
   useEffect(() => {
     axios(`http://localhost:5000/drivers/${id}`).then(({ data }) => {
-      if (data.name) {
-        setDrivers(data);
-      } else {
-        window.alert("No hay pilotos con ese ID");
-      }
+      if (data.name) setDriver(data);
     });
-    return setDrivers({});
+    return setDriver({});
   }, [id]);
 
   return (
     <div className={Styles.detail}>
-      {drivers.name ? (
+      {driver.name ? (
         <>
           <h1>
-            {drivers.name.forename} {drivers.name.surname}{" "}
+            {driver.name.forename} {driver.name.surname}{" "}
           </h1>
-          <h2>{drivers.id}</h2>
-          <h2>{drivers.nationality}</h2>
-          <h2>{drivers.teams}</h2>
-          <h2>{drivers.dob}</h2>
-          <p>{drivers.description}</p>
-          <img src={drivers.image.url} alt="img" />
+          <h2>{driver.id}</h2>
+          <h2>{driver.nationality}</h2>
+          <h2>{driver.teams}</h2>
+          <h2>{driver.dob}</h2>
+          <p>{driver.description}</p>
+          <img src={driver.image.url} alt="img" />
         </>
       ) : (
         <h3>Loading...</h3>
