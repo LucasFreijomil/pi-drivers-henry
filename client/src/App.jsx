@@ -1,9 +1,10 @@
 import "./App.css";
 import LandingPage from "./views/Landing/LandingPage";
 import NavBar from "./components/NavBar/Navbar";
-import HomePage from "./views/Home/HomePage";
+import CardList from "./components/CardList/CardList";
+import Detail from "./views/Detail/Detail";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Footer from "./components/Footer/Footer";
 
@@ -13,9 +14,7 @@ function App() {
 
   const onSearch = async (id) => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/drivers/${id}`
-      );
+      const response = await axios.get(`http://localhost:5000/drivers/${id}`);
 
       const { data } = response;
 
@@ -34,7 +33,8 @@ function App() {
       {pathname !== "/" && <NavBar onSearch={onSearch} />}
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
-        <Route exact path="/home" element={<HomePage drivers={drivers} />} />
+        <Route exact path="/home" element={<CardList drivers={drivers} />} />
+        <Route path="/detail/:id" element={<Detail />} />
       </Routes>
       {pathname !== "/" && <Footer />}
     </div>

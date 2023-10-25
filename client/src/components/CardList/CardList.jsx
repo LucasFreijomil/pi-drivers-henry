@@ -1,10 +1,10 @@
 import Card from "../Card/Card";
-import Styles from './CardContainer.module.css'
+import Styles from "./CardList.module.css";
 
-const CardContainer = ({drivers}) => {
+const CardList = ({ drivers }) => {
   return (
-    <div className={Styles.cardContainer}>
-        {drivers.map((driver) => {
+    <div className={Styles.CardList}>
+      {drivers.map((driver) => {
         return (
           <Card
             key={driver.id}
@@ -19,4 +19,4 @@ const CardContainer = ({drivers}) => {
   );
 };
 
-export default CardContainer;
+export default CardList;
