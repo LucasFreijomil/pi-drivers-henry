@@ -27,9 +27,19 @@ function App() {
     }
   };
 
+
+  const fetchAllDrivers = async () => {
+    try {
+      const { data } = await axios.get(`http://localhost:5000/drivers`);
+      setDrivers(data);
+    } catch (error) {
+      console.error("Error al obtener todos los pilotos:", error);
+    }
+  };
+
   return (
     <div className="App">
-      {pathname !== "/" && <NavBar onSearch={onSearch} />}
+      {pathname !== "/" && <NavBar onSearch={onSearch} showAll={fetchAllDrivers} />}
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route exact path="/home" element={<CardList drivers={drivers} />} />

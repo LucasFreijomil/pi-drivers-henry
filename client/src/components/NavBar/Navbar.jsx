@@ -3,7 +3,7 @@ import f1_logo from "../../assets/F1-logo.svg.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const NavBar = ({ onSearch }) => {
+const NavBar = ({ onSearch, showAll }) => {
   const [id, setId] = useState("");
 
   const handleChange = (event) => {
@@ -13,14 +13,14 @@ const NavBar = ({ onSearch }) => {
 
   return (
     <div className={Styles.navBar}>
-      <img src={f1_logo} alt="F1" className={Styles.f1_logo} />
 
       <Link to={"/home"}>
-        <button className={Styles.navButton}>Home</button>
+        <img src={f1_logo} alt="F1" className={Styles.f1_logo} />
+
       </Link>
 
       <Link to={"/create"}>
-        <button className={Styles.navButton}>Form</button>
+        <button className={Styles.navButton}>Create Driver</button>
       </Link>
 
       <div className={Styles.searchContainer}>
@@ -33,7 +33,7 @@ const NavBar = ({ onSearch }) => {
         <button onClick={() => {onSearch(id); setId("");}} className={Styles.searchButton}> Search</button>
       </div>
 
-      <button className={Styles.showAllButton}>Show All</button>
+      <button className={Styles.showAllButton} onClick={showAll}>Show All</button>
     </div>
   );
 };
