@@ -5,7 +5,7 @@ import CardList from "./components/CardList/CardList";
 import Detail from "./views/Detail/Detail";
 import Form from "./views/Form/Form";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Footer from "./components/Footer/Footer";
 
@@ -18,7 +18,7 @@ function App() {
       const { data } = await axios.get(`http://localhost:5000/drivers/${id}`);
 
       if (data.name) {
-        setDrivers((oldDrivers) => [...oldDrivers, data]);
+        setDrivers([data]);
       } else {
         window.alert("¡No hay pilotos con este ID!");
       }
@@ -26,7 +26,6 @@ function App() {
       console.error("Error al buscar el piloto:", error);
     }
   };
-
 
   const fetchAllDrivers = async () => {
     try {
@@ -36,6 +35,10 @@ function App() {
       console.error("Error al obtener todos los pilotos:", error);
     }
   };
+
+  useEffect(() => {
+    fetchAllDrivers();
+  }, []);
 
   return (
     <div className="App">

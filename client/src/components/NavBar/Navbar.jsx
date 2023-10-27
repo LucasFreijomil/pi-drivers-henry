@@ -15,7 +15,7 @@ const NavBar = ({ onSearch, showAll }) => {
     <div className={Styles.navBar}>
 
       <Link to={"/home"}>
-        <img src={f1_logo} alt="F1" className={Styles.f1_logo} />
+        <img src={f1_logo} alt="F1" className={Styles.f1_logo} onClick={showAll} />
 
       </Link>
 
@@ -23,7 +23,7 @@ const NavBar = ({ onSearch, showAll }) => {
         <button className={Styles.navButton}>Create Driver</button>
       </Link>
 
-      <div className={Styles.searchContainer}>
+      {/* <div className={Styles.searchContainer}>
         <input
           type="text"
           placeholder="Search by name..."
@@ -31,9 +31,8 @@ const NavBar = ({ onSearch, showAll }) => {
           onChange={handleChange}
           value={id} ></input>
         <button onClick={() => {onSearch(id); setId("");}} className={Styles.searchButton}> Search</button>
-      </div>
+      </div> */}
 
-      <button className={Styles.showAllButton} onClick={showAll}>Show All</button>
     </div>
   );
 };
