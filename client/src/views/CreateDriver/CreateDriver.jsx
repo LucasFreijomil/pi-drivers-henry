@@ -1,8 +1,8 @@
-import Styles from "./Form.module.css";
+import Styles from "./CreateDriver.module.css";
 import { useState } from "react";
 import validateForm from "../../formValidations";
 
-const Form = () => {
+const CreateDriver = () => {
   const [form, setForm] = useState({
     name: "",
     surname: "",
@@ -65,8 +65,4 @@ const Form = () => {
   );
 };
 
-export default Form;
-
-
-// Posibilidad de seleccionar/agregar varias escuderías en simultáneo.
-// Botón para dar de alta (crear) el nuevo driver.
+export default CreateDriver;

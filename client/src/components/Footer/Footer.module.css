@@ -1,6 +1,10 @@
 .footer {
-    background-color: #CCCCCC;
-    color: #2f2f2f;
-    font-size: large;
-    padding: 20px;
+  background-color: #cccccc;
+  color: #2f2f2f;
+  font-size: large;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
