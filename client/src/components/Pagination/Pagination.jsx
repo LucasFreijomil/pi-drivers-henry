@@ -3,10 +3,11 @@ import React from 'react';
 import Styles from '../CardList/CardList.module.css'
 
 const Pagination = ({ driversPerPage, totalDrivers, paginate, currentPage }) => {
-    const pageNumbers = [];
+    const totalPages = Math.ceil(totalDrivers / driversPerPage);
+    const pageIndexs = [];
   
-    for (let i = 1; i <= Math.ceil(totalDrivers / driversPerPage); i++) {
-      pageNumbers.push(i);
+    for (let i = 1; i <= totalPages; i++) {
+        pageIndexs.push(i);
     }
   
     return (
@@ -23,7 +24,7 @@ const Pagination = ({ driversPerPage, totalDrivers, paginate, currentPage }) => 
         </button>
         <button
           onClick={() => {
-            if (currentPage < pageNumbers.length) {
+            if (currentPage < pageIndexs.length) {
               paginate(currentPage + 1);
             }
           }}
