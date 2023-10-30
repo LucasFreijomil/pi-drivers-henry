@@ -5,7 +5,7 @@ import Home from "./views/Home/Home";
 import DriverDetail from "./views/Detail/Detail";
 import CreateDriver from "./views/CreateDriver/CreateDriver";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 
 function App() {
   const { pathname } = useLocation();
@@ -19,7 +19,7 @@ function App() {
         <Route path="/detail/:id" element={<DriverDetail />} />
         <Route path="/create" element={<CreateDriver />} />
       </Routes>
-      {pathname !== "/" && <Footer />}
+      {/* {pathname !== "/" && <Footer />} */}
     </div>
   );
 }

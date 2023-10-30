@@ -7,12 +7,16 @@ import Styles from "./Home.module.css";
 const Home = () => {
   const [drivers, setDrivers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedTeam, setSelectedTeam] = useState("");
   const driversPerPage = 9;
 
   const indexOfLastDriver = currentPage * driversPerPage;
   const indexOfFirstDriver = indexOfLastDriver - driversPerPage;
-  const currentDrivers = drivers.slice(indexOfFirstDriver, indexOfLastDriver);
+  const currentDrivers = drivers
+    .filter((driver) => !selectedTeam || driver.teams?.includes(selectedTeam))
+    .slice(indexOfFirstDriver, indexOfLastDriver);
   const totalPages = Math.ceil(drivers.length / driversPerPage);
+
   // const onSearch = async (id) => {
   //   try {
   //     const { data } = await axios.get(`http://localhost:5000/drivers/${id}`);
@@ -40,8 +44,33 @@ const Home = () => {
     fetchAllDrivers();
   }, []);
 
+  const teamSet = new Set();
+
+  for (let i = 0; i < drivers.length; i++) {
+    if (drivers[i].teams) {
+      let teamDriver = drivers[i].teams.split(",");
+      for (let j = 0; j < teamDriver.length; j++) {
+        teamSet.add(teamDriver[j].trim());
+      }
+    }
+  }
+
+  const handleTeamChange = (event) => {
+    setSelectedTeam(event.target.value);
+  };
+
+  const teamsArray = [...teamSet].sort();
+
   return (
     <div>
+      <select name="" id="" onChange={handleTeamChange} value={selectedTeam}>
+        <option value="">All</option>
+        {teamsArray.map((team, index) => (
+          <option key={index} value={team}>
+            {team}
+          </option>
+        ))}
+      </select>
       <div className={Styles.CardList}>
         {currentDrivers.map((driver) => (
           <CardDriver
