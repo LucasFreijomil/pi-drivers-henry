@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Styles from "./Detail.module.css";
 
-const Detail = () => {
+const DriverDetail = () => {
   const { id } = useParams();
 
   const [driver, setDriver] = useState({});
@@ -37,4 +37,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default DriverDetail;
