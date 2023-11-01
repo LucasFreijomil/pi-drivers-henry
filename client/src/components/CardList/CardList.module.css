@@ -1,0 +1,21 @@
+.CardList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    margin: 30px;
+    height: 100%;
+}
+
+.paginButtons {
+    color: #949494;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5em;
+    background-color: #e6260000;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    transition: color 0.35s;
+    padding:20px;
+}
+
+.paginButtons:hover {
+    color: #ffffff;
+}
