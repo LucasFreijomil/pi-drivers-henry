@@ -29,49 +29,5 @@
     color: #EAEEEF;
 }
 
-.searchInput {
-    height: 50px;
-    width: 500px;
-    background-color: #EAEEEF;
-    border: 1px solid transparent;
-    text-align: center;
-    font-size: 1.3em;
-}
 
-.searchContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
 
-.searchButton {
-    height: 52px;
-    width: 90px;
-    color: #EAEEEF;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1.3em;
-    background-color: #0C6DB2;
-    border: 1px solid transparent;
-    transition: background-color 0.35s, color 0.35s;
-}
-.searchButton:hover {
-    background-color: #2f2f2f;
-    color: #EAEEEF;
-}
-
-.showAllButton {
-    height: 50px;
-    width: 180px;
-    color: #2f2f2f;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 1.5em;
-    background-color: #ff7e00;
-    border-radius: 20px;
-    border: 1px solid transparent;
-    transition: background-color 0.35s, color 0.35s;
-}
-
-.showAllButton:hover {
-    background-color: #a75300;
-    color: #EAEEEF;
-}
