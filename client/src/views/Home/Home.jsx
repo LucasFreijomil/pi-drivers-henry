@@ -8,28 +8,25 @@ const Home = () => {
   const [drivers, setDrivers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedTeam, setSelectedTeam] = useState("");
-  const driversPerPage = 9;
+  const [searchedDriver, setSearchedDriver] = useState("");
+  const [birthSort, setBirthSort] = useState("");
 
+  const driversPerPage = 9;
   const indexOfLastDriver = currentPage * driversPerPage;
   const indexOfFirstDriver = indexOfLastDriver - driversPerPage;
+
   const currentDrivers = drivers
     .filter((driver) => !selectedTeam || driver.teams?.includes(selectedTeam))
+    .filter(
+      (driver) =>
+        driver.name.forename
+          .toLowerCase()
+          .includes(searchedDriver.toLowerCase()) ||
+        driver.name.surname.toLowerCase().includes(searchedDriver.toLowerCase())
+    )
     .slice(indexOfFirstDriver, indexOfLastDriver);
+
   const totalPages = Math.ceil(drivers.length / driversPerPage);
-
-  // const onSearch = async (id) => {
-  //   try {
-  //     const { data } = await axios.get(`http://localhost:5000/drivers/${id}`);
-
-  //     if (data.name) {
-  //       setDrivers([data]);
-  //     } else {
-  //       window.alert("¡No hay pilotos con este ID!");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error al buscar el piloto:", error);
-  //   }
-  // };
 
   const fetchAllDrivers = async () => {
     try {
@@ -59,24 +56,65 @@ const Home = () => {
     setSelectedTeam(event.target.value);
   };
 
+  const handleDriverSearch = (event) => {
+    setSearchedDriver(event.target.value);
+  };
+
+  const handleBirthSort = (event) => {
+    const selectedValue = event.target.value;
+    setBirthSort(selectedValue);
+  
+    if (selectedValue === "Ascending") {
+      const sortedDrivers = [...drivers].sort(
+        (a, b) => new Date(a.dob) - new Date(b.dob)
+      );
+      setDrivers(sortedDrivers);
+    } else if (selectedValue === "Descending") {
+      const sortedDrivers = [...drivers].sort(
+        (a, b) => new Date(b.dob) - new Date(a.dob)
+      );
+      setDrivers(sortedDrivers);
+    } else if (selectedValue === ""){
+      fetchAllDrivers()
+    }
+  };
+
   const teamsArray = [...teamSet].sort();
 
   return (
     <div>
-      <select name="" id="" onChange={handleTeamChange} value={selectedTeam}>
-        <option value="">All</option>
-        {teamsArray.map((team, index) => (
-          <option key={index} value={team}>
-            {team}
-          </option>
-        ))}
-      </select>
+      <div className={Styles.searchFilters}>
+        <select name="" id="" onChange={handleTeamChange} value={selectedTeam}>
+          <option value="">All Teams</option>
+          {teamsArray.map((team, index) => (
+            <option key={index} value={team}>
+              {team}
+            </option>
+          ))}
+        </select>
+
+        <select name="" id="" onChange={handleBirthSort} value={birthSort}>
+          <option value="">Date of birth (default)</option>
+          <option value="Ascending">Ascending</option>
+          <option value="Descending">Descending</option>
+        </select>
+
+        <div className={Styles.searchContainer}>
+          <input
+            type="text"
+            placeholder="Search by name..."
+            className={Styles.searchInput}
+            onChange={handleDriverSearch}
+          />
+        </div>
+      </div>
       <div className={Styles.CardList}>
         {currentDrivers.map((driver) => (
           <CardDriver
             key={driver.id}
             id={driver.id}
             name={driver.name.forename}
+            surname={driver.name.surname}
             teams={driver.teams}
             image={driver.image.url}
           />

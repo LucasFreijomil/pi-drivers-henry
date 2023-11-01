@@ -19,3 +19,25 @@
 .paginButtons:hover {
     color: #ffffff;
 }
+
+.searchInput {
+    height: 30px;
+    width: 500px;
+    background-color: #EAEEEF;
+    border: 1px solid transparent;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchFilters{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+}

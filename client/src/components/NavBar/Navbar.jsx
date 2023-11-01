@@ -9,6 +9,8 @@ const NavBar = () => {
         <img src={f1_logo} alt="F1" className={Styles.f1_logo} />
       </Link>
 
+
+
       <Link to={"/create"}>
         <button className={Styles.navButton}>Create Driver</button>
       </Link>
