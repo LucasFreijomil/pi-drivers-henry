@@ -10,6 +10,7 @@ const Home = () => {
   const [selectedTeam, setSelectedTeam] = useState("");
   const [searchedDriver, setSearchedDriver] = useState("");
   const [birthSort, setBirthSort] = useState("");
+  const [nameSort, setNameSort] = useState("");
 
   const driversPerPage = 9;
   const indexOfLastDriver = currentPage * driversPerPage;
@@ -17,12 +18,10 @@ const Home = () => {
 
   const currentDrivers = drivers
     .filter((driver) => !selectedTeam || driver.teams?.includes(selectedTeam))
-    .filter(
-      (driver) =>
-        driver.name.forename
-          .toLowerCase()
-          .includes(searchedDriver.toLowerCase()) ||
-        driver.name.surname.toLowerCase().includes(searchedDriver.toLowerCase())
+    .filter((driver) =>
+      `${driver.name.forename} ${driver.name.surname}`
+        .toLowerCase()
+        .includes(searchedDriver.toLowerCase())
     )
     .slice(indexOfFirstDriver, indexOfLastDriver);
 
@@ -63,7 +62,7 @@ const Home = () => {
   const handleBirthSort = (event) => {
     const selectedValue = event.target.value;
     setBirthSort(selectedValue);
-  
+
     if (selectedValue === "Ascending") {
       const sortedDrivers = [...drivers].sort(
         (a, b) => new Date(a.dob) - new Date(b.dob)
@@ -74,12 +73,31 @@ const Home = () => {
         (a, b) => new Date(b.dob) - new Date(a.dob)
       );
       setDrivers(sortedDrivers);
-    } else if (selectedValue === ""){
-      fetchAllDrivers()
+    } else if (selectedValue === "") {
+      fetchAllDrivers();
     }
   };
 
   const teamsArray = [...teamSet].sort();
+
+  const handleNameSort = (event) => {
+    const selectedValue = event.target.value;
+    setNameSort(selectedValue)
+
+    if (selectedValue === "Ascending") {
+      const sortedDrivers = [...drivers].sort((a, b) =>
+        `${a.name.forename} ${a.name.surname}`.localeCompare(`${b.name.forename} ${b.name.surname}`)
+      );
+      setDrivers(sortedDrivers);
+    } else if (selectedValue === "Descending") {
+      const sortedDrivers = [...drivers].sort((a, b) =>
+      `${b.name.forename} ${b.name.surname}`.localeCompare(`${a.name.forename} ${a.name.surname}`)
+      );
+      setDrivers(sortedDrivers);
+    }  else if (selectedValue === "") {
+      fetchAllDrivers();
+    }
+  };
 
   return (
     <div>
@@ -93,10 +111,16 @@ const Home = () => {
           ))}
         </select>
 
+        <select name="" id="" onChange={handleNameSort} value={nameSort}>
+          <option value="">Sort by name (default)</option>
+          <option value="Ascending">A - Z</option>
+          <option value="Descending">Z - A</option>
+        </select>
+
         <select name="" id="" onChange={handleBirthSort} value={birthSort}>
           <option value="">Date of birth (default)</option>
-          <option value="Ascending">Ascending</option>
-          <option value="Descending">Descending</option>
+          <option value="Ascending">Oldest to newest</option>
+          <option value="Descending">Newest to oldest</option>
         </select>
 
         <div className={Styles.searchContainer}>
