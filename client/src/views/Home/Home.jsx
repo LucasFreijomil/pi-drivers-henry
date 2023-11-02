@@ -85,12 +85,12 @@ const Home = () => {
     setNameSort(selectedValue)
 
     if (selectedValue === "Ascending") {
-      const sortedDrivers = [...drivers].sort((a, b) =>
+      const sortedDrivers = drivers.sort((a, b) =>
         `${a.name.forename} ${a.name.surname}`.localeCompare(`${b.name.forename} ${b.name.surname}`)
       );
       setDrivers(sortedDrivers);
     } else if (selectedValue === "Descending") {
-      const sortedDrivers = [...drivers].sort((a, b) =>
+      const sortedDrivers = drivers.sort((a, b) =>
       `${b.name.forename} ${b.name.surname}`.localeCompare(`${a.name.forename} ${a.name.surname}`)
       );
       setDrivers(sortedDrivers);
