@@ -1,10 +1,16 @@
 const axios = require("axios");
+const { Driver } = require("../models/Driver")
+
 const URL = "http://localhost:5000/drivers";
 
 const getAllDrivers = async (req, res) => {
   try {
-    const response = await axios.get(URL);
-    const allDrivers = response.data;
+    const apiResponse = await axios.get(URL);
+
+    const apiDrivers = apiResponse.data;
+    const dbDrivers = await Driver.findAll();
+
+    const allDrivers = [...apiDrivers, ...dbDrivers]
 
     return res.status(200).json(allDrivers);
   } catch (error) {
