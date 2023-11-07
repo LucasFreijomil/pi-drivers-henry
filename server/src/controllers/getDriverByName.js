@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { Driver } = require("../db");
+const { Op } = require("sequelize");
 
 const URL = "http://localhost:5000/drivers";
 
@@ -13,7 +14,9 @@ const getDriversByName = async (req, res) => {
 
     const dbDrivers = await Driver.findAll({
       where: {
-        firstName: name,
+        firstName: {
+          [Op.iLike]: "%" + name + "%",
+        },
       },
     });
 
