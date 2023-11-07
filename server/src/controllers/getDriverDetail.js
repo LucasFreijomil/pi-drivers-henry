@@ -16,7 +16,7 @@ const getDriverDetail = async (req, res) => {
       const apiDriver = apiResponse.data;
 
       return res.status(200).json(apiDriver);
-    }
+    } 
   } catch (error) {
     if (error.response.status === 404)
       return res.status(404).json({ error: "Driver not found" });
