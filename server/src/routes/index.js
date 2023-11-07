@@ -4,6 +4,7 @@ const getDriverDetail = require("../controllers/getDriverDetail");
 const getDriversByName = require("../controllers/getDriverByName");
 const getAllTeams = require("../controllers/getAllTeams");
 const createDriver = require("../controllers/createDriver");
+
 const router = Router();
 
 router.get("/drivers", getAllDrivers);

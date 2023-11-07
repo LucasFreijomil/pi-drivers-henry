@@ -1,7 +1,8 @@
-const { Driver, Team } = require("../db");
+const { Driver } = require("../db");
 
 const createDriver = async (req, res) => {
-  const { firstName, lastName, nationality, description, image, dob, teams } = req.body;
+  const { firstName, lastName, nationality, description, image, dob, teams } =
+    req.body;
 
   try {
     const newDriver = await Driver.create({
@@ -13,15 +14,7 @@ const createDriver = async (req, res) => {
       dob,
     });
 
-    if (teams && teams.length > 0) {
-      for (let i = 0; i < teams.length; i++) {
-        let foundTeam = await Team.findOne({ where: { name: teams[i] } });
-        if (!foundTeam) {
-          foundTeam = await Team.create({ name: teams[i] });
-        }
-        await newDriver.addTeam(foundTeam);
-      }
-    }
+    await newDriver.addTeam(teams);
 
     return res.status(201).json(newDriver);
   } catch (error) {
@@ -30,4 +23,3 @@ const createDriver = async (req, res) => {
 };
 
 module.exports = createDriver;
-

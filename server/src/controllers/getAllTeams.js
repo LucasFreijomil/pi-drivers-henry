@@ -6,6 +6,13 @@ const URL = "http://localhost:5000/drivers";
 const getAllTeams = async (req, res) => {
   try {
     const { data } = await axios.get(URL);
+
+    const foundTeam = await Team.findAll();
+
+    if (foundTeam.length > 0) {
+      return res.status(200).json(foundTeam);
+    }
+
     const teamSet = new Set();
 
     for (let i = 0; i < data.length; i++) {
@@ -19,15 +26,13 @@ const getAllTeams = async (req, res) => {
 
     const teamsArray = [...teamSet];
 
-    if ((await Team.count()) === 0) {
-      for (let team of teamsArray) {
-        await Team.create({ name: team });
-      }
+    for (let team of teamsArray) {
+      await Team.create({ name: team });
     }
 
-    res.status(200).json(teamsArray);
+    return res.status(200).json(teamsArray);
   } catch (error) {
-    res.status(500).send(error.message);
+    return res.status(500).send(error.message);
   }
 };
 
