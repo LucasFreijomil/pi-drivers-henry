@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Driver } = require("../models/Driver")
+const { Driver } = require('../db');
 
 const URL = "http://localhost:5000/drivers";
 
