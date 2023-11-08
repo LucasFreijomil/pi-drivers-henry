@@ -11,12 +11,20 @@ const Home = () => {
   const [searchedDriver, setSearchedDriver] = useState("");
   const [birthSort, setBirthSort] = useState("");
   const [nameSort, setNameSort] = useState("");
+  const [origin, setOrigin] = useState("");
 
   const driversPerPage = 9;
   const indexOfLastDriver = currentPage * driversPerPage;
   const indexOfFirstDriver = indexOfLastDriver - driversPerPage;
 
-  const currentDrivers = drivers
+  const filteredDrivers =
+    origin === "API"
+      ? drivers.filter((driver) => driver.id >= 1 && driver.id <= 508)
+      : origin === "DB"
+      ? drivers.filter((driver) => driver.id >= 509)
+      : drivers;
+
+  const currentDrivers = filteredDrivers
     .filter((driver) => !selectedTeam || driver.teams?.includes(selectedTeam))
     .filter((driver) =>
       `${driver.name.forename} ${driver.name.surname}`
@@ -103,6 +111,12 @@ const Home = () => {
     }
   };
 
+  const handleOriginChange = (event) => {
+    console.log(origin);
+
+    setOrigin(event.target.value);
+  };
+
   return (
     <div>
       <div className={Styles.searchFilters}>
@@ -116,15 +130,21 @@ const Home = () => {
         </select>
 
         <select name="" id="" onChange={handleNameSort} value={nameSort}>
-          <option value="">Sort by name (default)</option>
+          <option value="">Sort By Name (default)</option>
           <option value="Ascending">A - Z</option>
           <option value="Descending">Z - A</option>
         </select>
 
         <select name="" id="" onChange={handleBirthSort} value={birthSort}>
-          <option value="">Date of birth (default)</option>
-          <option value="Ascending">Oldest to newest</option>
-          <option value="Descending">Newest to oldest</option>
+          <option value="">Date Of Birth (default)</option>
+          <option value="Ascending">Oldest First</option>
+          <option value="Descending">Newest First</option>
+        </select>
+
+        <select name="" id="" onChange={handleOriginChange} value={origin}>
+          <option value="">Show All (API/DB)</option>
+          <option value="API">API</option>
+          <option value="DB">Database</option>
         </select>
 
         <div className={Styles.searchContainer}>
