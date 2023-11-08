@@ -29,7 +29,7 @@ const Home = () => {
 
   const fetchAllDrivers = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:5000/drivers`);
+      const { data } = await axios.get(`http://localhost:3001/drivers`);
       setDrivers(data);
     } catch (error) {
       console.error("Error al obtener todos los pilotos:", error);
