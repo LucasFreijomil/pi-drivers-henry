@@ -29,7 +29,7 @@ const Home = () => {
 
   const fetchAllDrivers = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:5000/drivers`);
+      const { data } = await axios.get(`http://localhost:3001/drivers`);
       setDrivers(data);
     } catch (error) {
       console.error("Error al obtener todos los pilotos:", error);
@@ -82,19 +82,23 @@ const Home = () => {
 
   const handleNameSort = (event) => {
     const selectedValue = event.target.value;
-    setNameSort(selectedValue)
+    setNameSort(selectedValue);
 
     if (selectedValue === "Ascending") {
       const sortedDrivers = drivers.sort((a, b) =>
-        `${a.name.forename} ${a.name.surname}`.localeCompare(`${b.name.forename} ${b.name.surname}`)
+        `${a.name.forename} ${a.name.surname}`.localeCompare(
+          `${b.name.forename} ${b.name.surname}`
+        )
       );
       setDrivers(sortedDrivers);
     } else if (selectedValue === "Descending") {
       const sortedDrivers = drivers.sort((a, b) =>
-      `${b.name.forename} ${b.name.surname}`.localeCompare(`${a.name.forename} ${a.name.surname}`)
+        `${b.name.forename} ${b.name.surname}`.localeCompare(
+          `${a.name.forename} ${a.name.surname}`
+        )
       );
       setDrivers(sortedDrivers);
-    }  else if (selectedValue === "") {
+    } else if (selectedValue === "") {
       fetchAllDrivers();
     }
   };

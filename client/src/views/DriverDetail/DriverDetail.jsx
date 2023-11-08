@@ -10,7 +10,7 @@ const DriverDetail = () => {
   const [driver, setDriver] = useState({});
 
   useEffect(() => {
-    axios(`http://localhost:5000/drivers/${id}`).then(({ data }) => {
+    axios(`http://localhost:3001/drivers/${id}`).then(({ data }) => {
       if (data.name) setDriver(data);
     });
     return setDriver({});

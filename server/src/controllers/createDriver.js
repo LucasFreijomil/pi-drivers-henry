@@ -1,13 +1,13 @@
 const { Driver } = require("../db");
 
 const createDriver = async (req, res) => {
-  const { firstName, lastName, nationality, description, image, dob, teams } =
+  const { forename, surname, nationality, description, image, dob, teams } =
     req.body;
 
   try {
     const newDriver = await Driver.create({
-      firstName,
-      lastName,
+      forename,
+      surname,
       nationality,
       description,
       image,
