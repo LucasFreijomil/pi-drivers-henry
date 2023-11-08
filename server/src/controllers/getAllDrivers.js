@@ -20,7 +20,9 @@ const getAllDrivers = async (req, res) => {
           forename: driver.forename,
           surname: driver.surname,
         },
-        image: driver.image,
+        image: {
+          url: driver.image,
+        },
         dob: driver.dob,
         nationality: driver.nationality,
         teams: teamsArray.map((team) => team.name).join(", "),
