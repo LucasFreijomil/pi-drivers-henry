@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Driver, Team } = require("../db");
-const {formatDate} = require("../utils/formatDate")
+const { formatDate } = require("../utils/formatDate");
 const URL = "http://localhost:5000/drivers";
 
 const getDriverDetail = async (req, res) => {
@@ -8,7 +8,11 @@ const getDriverDetail = async (req, res) => {
 
   try {
     const dbResponse = await Driver.findByPk(idDriver, {
-      include: { model: Team, attributes: ["name"], through: { attributes: [] } }
+      include: {
+        model: Team,
+        attributes: ["name"],
+        through: { attributes: [] },
+      },
     });
 
     if (dbResponse) {
@@ -22,15 +26,15 @@ const getDriverDetail = async (req, res) => {
         id: dbResponse.id,
         name: {
           forename: dbResponse.forename,
-          surname: dbResponse.surname
+          surname: dbResponse.surname,
         },
         image: {
-          url: dbResponse.image
+          url: dbResponse.image,
         },
         dob: formattedDob,
         nationality: dbResponse.nationality,
         teams: teamsArray.map((team) => team.name).join(", "),
-        description: dbResponse.description
+        description: dbResponse.description,
       };
 
       return res.status(200).json(dbDriver);
@@ -47,6 +51,5 @@ const getDriverDetail = async (req, res) => {
     return res.status(500).send(error.message);
   }
 };
-
 
 module.exports = getDriverDetail;

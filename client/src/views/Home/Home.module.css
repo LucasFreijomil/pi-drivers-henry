@@ -1,8 +1,11 @@
 .CardList {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+    justify-items: center;
     margin: 30px;
-    height: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .paginButtons {
@@ -13,7 +16,7 @@
     border-radius: 20px;
     border: 1px solid transparent;
     transition: color 0.35s;
-    padding:20px;
+    padding: 20px;
 }
 
 .paginButtons:hover {
@@ -35,7 +38,7 @@
     align-items: center;
 }
 
-.searchFilters{
+.searchFilters {
     display: flex;
     flex-direction: row;
     justify-content: space-around;

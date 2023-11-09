@@ -1,4 +1,4 @@
-.navBar{
+.navBar {
     background-color: #021342;
     color: #EAEEEF;
     height: 100px;
@@ -12,13 +12,13 @@
     height: 50px;
 }
 
-.navButton{
+.navButton {
     height: 50px;
     width: 180px;
-    color: #2f2f2f;
+    color: #ffffff;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 1.5em;
-    background-color: #E62600;
+    background-color: #ff2400;
     border-radius: 20px;
     border: 1px solid transparent;
     transition: background-color 0.35s, color 0.35s;
@@ -28,6 +28,3 @@
     background-color: #981900;
     color: #EAEEEF;
 }
-
-
-

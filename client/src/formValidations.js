@@ -11,7 +11,6 @@ const nameValidation = (data) => {
   }
 };
 
-
 const surnameValidation = (data) => {
   const namePattern = /^[A-Za-z]+$/;
   if (data.trim() !== "") {
@@ -41,11 +40,11 @@ const nationalityValidation = (data) => {
 const imageValidation = (url) => {
   const pattern = new RegExp(
     "^(https?:\\/\\/)?" + // protocol
-    "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-    "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-    "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-    "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-    "(\\#[-a-z\\d_]*)?$",
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "(\\#[-a-z\\d_]*)?$",
     "i"
   );
   if (url.trim() !== "" && pattern.test(url)) {
@@ -65,14 +64,15 @@ const birthValidation = (data) => {
 };
 
 const teamsValidation = (data) => {
-  const namePattern = /^[A-Za-z]+$/;
-  if (data.trim() !== "") {
-    if (namePattern.test(data)) {
-      return "";
+  const teamsArray = data.split(/,\s*|\s*-\s*/);
+  const namePattern = /^[A-Z][a-zA-Z\s-]*$/;
+  for (let i = 0; i < teamsArray.length; i++) {
+    const team = teamsArray[i].trim();
+    if (!namePattern.test(team)) {
+      return "Los equipos deben tener la primera letra en mayúscula y solo pueden contener letras, espacios o guiones medios";
     }
-  } else {
-    return "Los equipos no pueden estar vacíos";
   }
+  return "";
 };
 
 const descriptionValidation = (data) => {
@@ -100,4 +100,3 @@ const validateForm = (data) => {
 };
 
 export default validateForm;
-  

@@ -3,7 +3,6 @@ import f1_logo from "../../assets/F1-logo.svg.png";
 import Styles from "../NavBar/NavBar.module.css";
 
 const NavBar = () => {
-
   return (
     <div className={Styles.navBar}>
       <Link to={"/home"}>

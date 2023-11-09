@@ -1,4 +1,4 @@
-const { Driver } = require("../db");
+const { Driver, Team } = require("../db");
 
 const createDriver = async (req, res) => {
   const { forename, surname, nationality, description, image, dob, teams } =
@@ -14,7 +14,12 @@ const createDriver = async (req, res) => {
       dob,
     });
 
-    await newDriver.addTeam(teams);
+    for (const teamName of teams) {
+      const team = await Team.findOne({ where: { name: teamName } });
+      if (team) {
+        await newDriver.addTeam(team);
+      }
+    }
 
     return res.status(201).json(newDriver);
   } catch (error) {

@@ -7,9 +7,9 @@ const Card = ({ id, name, surname, image, teams }) => {
     <div className={Styles.link} onClick={() => navigate(`/detail/${id}`)}>
       <div className={Styles.card}>
         <h1>{name} {surname}</h1>
+        <img className={Styles.cardImage} src={image} alt={name} />
         <br />
         <h3>{teams}</h3>
-        <img className={Styles.cardImage} src={image} alt={name} />
       </div>
     </div>
   );

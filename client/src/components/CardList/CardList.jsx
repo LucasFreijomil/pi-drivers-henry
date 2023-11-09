@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Card from '../Card/Card';
-import Pagination from '../Pagination/Pagination';
-import Styles from './CardList.module.css';
+import React, { useState } from "react";
+import Card from "../Card/Card";
+import Pagination from "../Pagination/Pagination";
+import Styles from "./CardList.module.css";
 
 const CardList = ({ drivers }) => {
   const [currentPage, setCurrentPage] = useState(1);

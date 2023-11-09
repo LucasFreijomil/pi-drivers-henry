@@ -1,28 +1,39 @@
 .card {
-  margin: 15px;
-  background: #ff7e00;
-  color: #2f2f2f;
-  transition: 0.3s;
-  border-radius: 3px;
+  margin: 20px;
+  width: 300px;
+  height: 400px;
+  background: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
-  background: #a75300;
+  transform: scale(1.05);
 }
 
 .cardImage {
-  height: 200px;
-  padding: 20px;
-  border-radius: 25px;
+  height: 60%;
+  object-fit: cover;
+  border-bottom: 2px solid #ff2400;
 }
 
-@media screen and (max-width: 460px) {
-  .card {
-    width: 60%;
-  }
+.cardContent {
+  padding: 20px;
 }
 
 .link {
   cursor: pointer;
   text-decoration: none;
+  color: #d4d4d4;
+  align-self: flex-end;
+  margin-top: auto;
+  margin-right: 20px;
+}
+
+.link:hover {
+  color: #ff2400;
 }

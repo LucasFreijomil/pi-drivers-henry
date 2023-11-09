@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Driver, Team } = require('../db');
+const { Driver, Team } = require("../db");
 
 const URL = "http://localhost:5000/drivers";
 
@@ -8,12 +8,18 @@ const getAllDrivers = async (req, res) => {
     const apiResponse = await axios.get(URL);
 
     const apiDrivers = apiResponse.data;
-    const dbResponse = await Driver.findAll({include: {model: Team, attributes: ["name"], through: {attributes: []}}});
+    const dbResponse = await Driver.findAll({
+      include: {
+        model: Team,
+        attributes: ["name"],
+        through: { attributes: [] },
+      },
+    });
     const dbDrivers = dbResponse.map((driver) => {
       const teamsArray = driver.Teams.map((team) => {
         return { name: team.name };
       });
-    
+
       return {
         id: driver.id,
         name: {
@@ -30,7 +36,7 @@ const getAllDrivers = async (req, res) => {
       };
     });
 
-    const allDrivers = [...apiDrivers, ...dbDrivers]
+    const allDrivers = [...apiDrivers, ...dbDrivers];
 
     return res.status(200).json(allDrivers);
   } catch (error) {
