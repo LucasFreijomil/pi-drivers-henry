@@ -20,15 +20,17 @@ const DriverDetail = () => {
     <div className={Styles.detail}>
       {driver.name ? (
         <>
+
           <h1>
             {driver.name.forename} {driver.name.surname}{" "}
           </h1>
-          <h2>{driver.id}</h2>
+          <img className={Styles.detailImage} src={driver.image.url} alt="img" />
+
+          <h2>ID: {driver.id}</h2>
           <h2>{driver.nationality}</h2>
           <h2>{driver.teams}</h2>
           <h2>{driver.dob}</h2>
           <p>{driver.description}</p>
-          <img src={driver.image.url} alt="img" />
         </>
       ) : (
         <h3>Loading...</h3>

@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { Driver, Team } = require("../db");
-
+const {formatDate} = require("../utils/formatDate")
 const URL = "http://localhost:5000/drivers";
 
 const getDriverDetail = async (req, res) => {
@@ -16,6 +16,8 @@ const getDriverDetail = async (req, res) => {
         return { name: team.name };
       });
 
+      const formattedDob = formatDate(dbResponse.dob);
+
       const dbDriver = {
         id: dbResponse.id,
         name: {
@@ -25,7 +27,7 @@ const getDriverDetail = async (req, res) => {
         image: {
           url: dbResponse.image
         },
-        dob: dbResponse.dob,
+        dob: formattedDob,
         nationality: dbResponse.nationality,
         teams: teamsArray.map((team) => team.name).join(", "),
         description: dbResponse.description

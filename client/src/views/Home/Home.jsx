@@ -112,8 +112,6 @@ const Home = () => {
   };
 
   const handleOriginChange = (event) => {
-    console.log(origin);
-
     setOrigin(event.target.value);
   };
 
