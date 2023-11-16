@@ -8,8 +8,20 @@
     margin: 0 auto;
 }
 
+.pagination {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+
+.pagination h1 {
+    color: #EAEEEF;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5em;
+}
+
 .paginButtons {
-    color: #949494;
+    color: #EAEEEF;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 1.5em;
     background-color: #e6260000;
@@ -20,13 +32,14 @@
 }
 
 .paginButtons:hover {
-    color: #ffffff;
+    color: #ff2400;
 }
 
 .searchInput {
     height: 30px;
     width: 500px;
     background-color: #EAEEEF;
+    color: black;
     border: 1px solid transparent;
     text-align: center;
     font-size: 1.3em;

@@ -2,7 +2,7 @@ services:
   drivers-db:
     image: postgres:latest
     ports:
-      - 5432:5432
+      - 49627:5432
     volumes:
       - ~/apps/postgres:/var/lib/postgresql/data
     environment:

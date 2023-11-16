@@ -18,6 +18,7 @@ const Pagination = ({ totalPages, paginate, currentPage }) => {
       >
         <MdKeyboardDoubleArrowLeft /> Prev
       </button>
+      <h1>{currentPage}/{totalPages}</h1>
       <button
         onClick={() => {
           if (currentPage < totalPages) {

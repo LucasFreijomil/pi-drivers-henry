@@ -1,11 +1,14 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CardDriver from "../../components/CardDriver/CardDriver";
 import Pagination from "../../components/Pagination/Pagination";
+import { fetchAllDrivers } from "../../redux/driverSlice";
 import Styles from "./Home.module.css";
 
 const Home = () => {
-  const [drivers, setDrivers] = useState([]);
+  const dispatch = useDispatch();
+  const drivers = useSelector((state) => state.drivers.drivers);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedTeam, setSelectedTeam] = useState("");
   const [searchedDriver, setSearchedDriver] = useState("");
@@ -35,17 +38,11 @@ const Home = () => {
 
   const totalPages = Math.ceil(drivers.length / driversPerPage);
 
-  const fetchAllDrivers = async () => {
-    try {
-      const { data } = await axios.get(`http://localhost:3001/drivers`);
-      setDrivers(data);
-    } catch (error) {
-      console.error("Error al obtener todos los pilotos:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchAllDrivers();
+    fetch("http://localhost:3001/drivers")
+      .then((response) => response.json())
+      .then((data) => dispatch(fetchAllDrivers(data)))
+      .catch((error) => console.log(error));
   }, []);
 
   const teamSet = new Set();
@@ -75,14 +72,14 @@ const Home = () => {
       const sortedDrivers = [...drivers].sort(
         (a, b) => new Date(a.dob) - new Date(b.dob)
       );
-      setDrivers(sortedDrivers);
+      dispatch(fetchAllDrivers(sortedDrivers));
     } else if (selectedValue === "Descending") {
       const sortedDrivers = [...drivers].sort(
         (a, b) => new Date(b.dob) - new Date(a.dob)
       );
-      setDrivers(sortedDrivers);
+      dispatch(fetchAllDrivers(sortedDrivers));
     } else if (selectedValue === "") {
-      fetchAllDrivers();
+      dispatch(fetchAllDrivers(drivers));
     }
   };
 
@@ -93,21 +90,21 @@ const Home = () => {
     setNameSort(selectedValue);
 
     if (selectedValue === "Ascending") {
-      const sortedDrivers = drivers.sort((a, b) =>
+      const sortedDrivers = [...drivers].sort((a, b) =>
         `${a.name.forename} ${a.name.surname}`.localeCompare(
           `${b.name.forename} ${b.name.surname}`
         )
       );
-      setDrivers(sortedDrivers);
+      dispatch(fetchAllDrivers(sortedDrivers));
     } else if (selectedValue === "Descending") {
-      const sortedDrivers = drivers.sort((a, b) =>
+      const sortedDrivers = [...drivers].sort((a, b) =>
         `${b.name.forename} ${b.name.surname}`.localeCompare(
           `${a.name.forename} ${a.name.surname}`
         )
       );
-      setDrivers(sortedDrivers);
+      dispatch(fetchAllDrivers(sortedDrivers));
     } else if (selectedValue === "") {
-      fetchAllDrivers();
+      dispatch(fetchAllDrivers(drivers));
     }
   };
 

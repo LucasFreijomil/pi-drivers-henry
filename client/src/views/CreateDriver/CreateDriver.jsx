@@ -59,37 +59,33 @@ const CreateDriver = () => {
         <h2>Surname</h2>
         <input type="text" name="surname" onChange={handleInputChange} />
         <br />
-
         {errors.surname && <span>{errors.surname}</span>}
 
         <h2>Nationality</h2>
         <input type="text" name="nationality" onChange={handleInputChange} />
         <br />
-
         {errors.nationality && <span>{errors.nationality}</span>}
 
         <h2>Description</h2>
         <input type="text" name="description" onChange={handleInputChange} />
         <br />
-
         {errors.description && <span>{errors.description}</span>}
 
         <h2>Image</h2>
         <input type="text" name="image" onChange={handleInputChange} />
         <br />
-
         {errors.image && <span>{errors.image}</span>}
 
         <h2>Date of birth</h2>
         <input type="text" name="dob" onChange={handleInputChange} />
         <br />
-
         {errors.dob && <span>{errors.dob}</span>}
 
         <h2>Teams</h2>
         <input type="text" name="teams" onChange={handleInputChange} />
         <br />
         {errors.teams && <span>{errors.teams}</span>}
+        <br />
         <br />
         <button>Create</button>
       </form>

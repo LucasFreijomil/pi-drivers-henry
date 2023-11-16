@@ -9,6 +9,10 @@
   color: #ffffff;
 }
 
+.form input {
+  color: #ffffff;
+}
+
 .form button {
   display: inline-block;
   background-color: #ff2400;
